@@ -63,6 +63,9 @@ class userController {
         }
     };
 
+
+    // below method is just for testing purpose not the part of project
+    
     static deleteAllUsers = async (req, res) => {
         try {
             const result = await userModel.deleteMany({});

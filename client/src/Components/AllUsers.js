@@ -3,12 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
-
+  const [loader, setLoading] = useState(false);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:4500/api/users/getuserlist');
+        setLoading(true);
+        // const response = await fetch('http://localhost:4500/api/users/getuserlist');
+        const response = await fetch('https://quilldevelopers.com/api/users/getuserlist');
         const data = await response.json();
+        data && setLoading(false);
         setUsers(data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -56,7 +59,7 @@ const AllUsers = () => {
             </tbody>
           </table>
         ) : (
-          <p>No records found</p>
+          loader ? "Loading...":<p>No records found</p>
         )}
       </div>
     </>
